@@ -1,0 +1,68 @@
+﻿@model Mecanico
+@inject iRepositorioMecanico Repositorio
+@{
+    ViewData["Title"] = "Asignar Trabajo";
+
+    var mecanicos = await Repositorio.MecanicosPorSupervisor(2);
+
+}
+@section Scripts{
+    <script>
+        const clienteInput = document.getElementById('cliente');
+        const sugerencia = document.getElementById('sugerencia');
+
+        clienteInput.addEventListener('input', async () => {
+            const nombre = clienteInput.value;
+            console.log(nombre);
+            const nombreResultado = await obtenerCoincidenciaNombre(nombre);
+            sugerencia.textContent = nombreResultado;
+            console.log(nombreResultado);
+        });
+
+        async function obtenerCoincidenciaNombre(nombreBusqueda) {
+            var valor;
+            await $.ajax({
+                url: '/Acciones/CoincidenciaNombre',
+                type: 'GET',
+                data: { nombre: nombreBusqueda },
+                success: function (data) {
+                    valor = data;
+                    console.log(data);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+            return valor;
+        }
+
+        sugerencia.addEventListener("click", () => {
+            clienteInput.value=sugerencia.textContent;
+            sugerencia.textContent = "";
+        });
+    </script>
+}
+
+<h3>Buscar Mecanicos</h3>
+<div>
+    <form method="post" action="/formulario">
+        <div class="col-6">
+            <label for="cliente">Nombre del cliente:</label>
+            <input type="text" id="cliente" name="cliente" />
+            <ul id="sugerencia" style="hover{background-color: yellow}"></ul>
+        </div>
+
+        <div class="col-6">
+            <label for="mecanico">Seleccionar mecánico:</label>
+            <select id="mecanico" name="mecanico">
+                <option value="">-- Seleccionar --</option>
+                @foreach (var mecanico in mecanicos)
+                {
+                    <option value="@mecanico.nombre">@mecanico.nombre</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit">Asignar</button>
+    </form>
+</div>

@@ -1,0 +1,75 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    /* Estilos opcionales para mejorar la apariencia */
+
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+</style>
+
+<div class="container">
+    <h2>Iniciar sesión</h2>
+    <form id="LoginForm" asp-action="LoginIn">
+        <div class="row mb-2">
+            <label asp-for="correo" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input type="email" name="correo" class="form-control" />
+                <span asp-validation-for="correo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label asp-for="contraseña" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input type="password" name="contraseña" class="form-control" />
+                <span asp-validation-for="contraseña" class="text-danger"></span>
+            </div>
+        </div>
+
+        <label id="message" class="message"></label>
+
+
+        <button type="submit">Iniciar sesión</button>
+    </form>
+</div>

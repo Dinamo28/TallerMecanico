@@ -1,0 +1,93 @@
+﻿@model Mecanico
+@{
+    ViewData["Title"] = "Registrar Mecanico";
+}
+<style>
+    form {
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        max-width: 600px;
+        margin: 50px auto;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #666;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    input[type="text"], input[type="tel"], input[type="email"], input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    input[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+</style>
+
+<div>
+    <h3>Registrar Mecanico</h3>
+    <form id="MyForm" asp-action="CrearMecanico">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="row mb-2">
+            <label asp-for="nombre" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input type="text" asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label asp-for="telefono" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="tel" asp-for="telefono" class="form-control" />
+                <span asp-validation-for="telefono" class="text-danger"></span>
+            </div>
+            <label asp-for="correo" class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-5">
+                <input type="email" asp-for="correo" class="form-control" />
+                <span asp-validation-for="correo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label asp-for="direccion" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="direccion" class="form-control" />
+                <span asp-validation-for="direccion" class="text-danger"></span>
+            </div>
+            <label asp-for="cp" class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-5">
+                <input type="text" asp-for="cp" class="form-control" />
+                <span asp-validation-for="cp" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label asp-for="rfc" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input type="text" asp-for="rfc" class="form-control" />
+                <span asp-validation-for="rfc" class="text-danger"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info">Registrar</button>
+    </form>
+</div>
